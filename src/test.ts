@@ -1,4 +1,4 @@
-import { convert } from ".";
+import { convert } from "./index";
 
 describe("convert", () => {
   describe("when an object is provided", () => {
