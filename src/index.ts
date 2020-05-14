@@ -1,16 +1,14 @@
-export const convert = (cssobject: object): string => {
-  return Object.keys(cssobject)
-    .map(
-      (key) =>
-        `${normalizeProperty(key)}: ${formatValue(
-          cssobject[key],
-          normalizeProperty(key)
-        )};`
-    )
-    .join("\n");
-};
+export const convert = <T extends object>(cssobject: T): string =>
+  (Object.keys(cssobject) as Array<keyof T>)
+    .map((key) => {
+      const formattedKey = normalizeProperty(key.toString());
+      const formattedValue = formatValue(cssobject[key], formattedKey);
 
-const formatValue = (value: string | number, property: string) => {
+      return `${formattedKey}: ${formattedValue};`;
+    })
+    .join("\n");
+
+const formatValue = (value: unknown, property: string) => {
   if (typeof value === "string") {
     return value;
   } else if (value === 0 || property === "font-weight") {
