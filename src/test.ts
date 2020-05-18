@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { convert } from "./index.ts";
+import { convert } from "./mod.ts";
 
 Deno.test("when an object is provided - returns a string", () => {
   assertEquals(convert({}), "");
